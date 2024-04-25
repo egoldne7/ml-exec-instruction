@@ -1,9 +1,6 @@
-# GPT2
-```bash
+cd /tmp
 git clone https://github.com/egoldne7/ml-exec-instruction 
-```
-## In single node 8xH100
-```bash
+
 image_name="huggingface/transformers-pytorch-gpu:latest" # for CUDA >12.1
 docker run \
 --rm -it \
@@ -19,4 +16,3 @@ $image_name \
     --rdzv_endpoint=127.0.0.1:29400 \
     --rdzv_backend=c10d \
     /workspace/benchmark/single_node_GPT2ForQA_fakedata.py --backend nccl --epochs 5000 --batch-size 80
-```
