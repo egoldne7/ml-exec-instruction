@@ -7,6 +7,7 @@ head_node_ip=os.environ.get('head_node_ip', "103.77.130.16")
 N_GPU_EACH_NODE=int(os.environ.get('N_GPU_EACH_NODE', 8))
 N_NODES=int(os.environ.get('N_NODES', 2))
 NODE_ID=int(os.environ.get('NODE_ID', 0))
+EPOCHS=int(os.environ.get('EPOCHS', 5000))
 WORLD_SIZE=N_GPU_EACH_NODE*N_NODES
 print(f"head_node_ip: {head_node_ip}, N_GPU_EACH_NODE: {N_GPU_EACH_NODE}, N_NODES: {N_NODES}, NODE_ID: {NODE_ID}, WORLD_SIZE: {WORLD_SIZE}")
 
@@ -46,6 +47,6 @@ exec_cmd(cmd)
 
 for local_rank in range(N_GPU_EACH_NODE):
    global_rank = local_rank + NODE_ID * N_GPU_EACH_NODE
-   cmd_format = f"RANK={global_rank} CUDA_VISIBLE_DEVICES={local_rank} python3 /workspace/benchmark/multi_node_GPT2ForQA_fakedata.py --backend ucc --epochs 5000 --batch-size 80"
+   cmd_format = f"RANK={global_rank} CUDA_VISIBLE_DEVICES={local_rank} python3 /workspace/benchmark/multi_node_GPT2ForQA_fakedata.py --backend ucc --epochs {EPOCHS} --batch-size 80"
    cmd = f'docker exec -d -it ddp_stresstest bash -c "{cmd_format}"'
    exec_cmd(cmd)
