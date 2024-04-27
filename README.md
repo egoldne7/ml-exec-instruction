@@ -1,5 +1,6 @@
 # GPT2
 ```bash
+cd /tmp && rm -rf /tmp/ml-exec-instruction 
 git clone https://github.com/egoldne7/ml-exec-instruction 
 ```
 ## In single node 8xH100
@@ -19,4 +20,12 @@ $image_name \
     --rdzv_endpoint=127.0.0.1:29400 \
     --rdzv_backend=c10d \
     /workspace/benchmark/single_node_GPT2ForQA_fakedata.py --backend nccl --epochs 5000 --batch-size 80
+```
+## in multiple node 8xH100
+```bash
+cd /tmp && rm -rf /tmp/ml-exec-instruction 
+git clone https://github.com/egoldne7/ml-exec-instruction 
+NODE_ID=0 N_GPU_EACH_NODE=8 N_NODES=2 python3 /tmp/ml-exec-instruction/script/multinode.py
+# ...
+NODE_ID=1 N_GPU_EACH_NODE=8 N_NODES=2 python3 /tmp/ml-exec-instruction/script/multinode.py
 ```
