@@ -25,7 +25,7 @@ $image_name \
 ```bash
 cd /tmp && rm -rf /tmp/ml-exec-instruction 
 git clone https://github.com/egoldne7/ml-exec-instruction 
-NODE_ID=0 N_GPU_EACH_NODE=8 N_NODES=2 python3 /tmp/ml-exec-instruction/script/multinode.py
+NODE_ID=0 N_GPU_EACH_NODE=8 N_NODES=2 EPOCHS=100 python3 /tmp/ml-exec-instruction/script/multinode.py
 # ...
-NODE_ID=1 N_GPU_EACH_NODE=8 N_NODES=2 python3 /tmp/ml-exec-instruction/script/multinode.py
+NODE_ID=1 N_GPU_EACH_NODE=8 N_NODES=2 EPOCHS=100 python3 /tmp/ml-exec-instruction/script/multinode.py
 ```
