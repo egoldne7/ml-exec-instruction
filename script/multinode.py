@@ -1,13 +1,14 @@
 import os
 import subprocess
 
-head_node_ip="103.77.130.16"
 image_name="egoldne7/pytorch_ucc_transformers:latest"
 
-N_GPU_EACH_NODE=8
-N_NODES=2
+head_node_ip=os.environ.get('head_node_ip', "103.77.130.16")
+N_GPU_EACH_NODE=int(os.environ.get('N_GPU_EACH_NODE', 8))
+N_NODES=int(os.environ.get('N_NODES', 2))
 NODE_ID=int(os.environ.get('NODE_ID', 0))
 WORLD_SIZE=N_GPU_EACH_NODE*N_NODES
+print(f"head_node_ip: {head_node_ip}, N_GPU_EACH_NODE: {N_GPU_EACH_NODE}, N_NODES: {N_NODES}, NODE_ID: {NODE_ID}, WORLD_SIZE: {WORLD_SIZE}")
 
 def exec_cmd(cmd):
    print(cmd)
